@@ -10,7 +10,7 @@
 
             //validasi form kosong
             if($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
-                || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
+                || $_REQUEST['agenda_bangkes'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
@@ -19,7 +19,7 @@
                 $no_surat = $_REQUEST['no_surat'];
                 $asal_surat = $_REQUEST['asal_surat'];
                 $isi = $_REQUEST['isi'];
-                $kode = substr($_REQUEST['kode'],0,30);
+                $kode = substr($_REQUEST['agenda_bangkes'],0,30);
                 $nkode = trim($kode);
                 $indeks = $_REQUEST['indeks'];
                 $tgl_surat = $_REQUEST['tgl_surat'];
@@ -47,9 +47,9 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['kode'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
-                                    echo '<script language="javascript">window.history.back();</script>';
+                               if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $agenda_bangkes)){
+                                $_SESSION['no_surat'] = 'Form No Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
+                                echo '<script language="javascript">window.history.back();</script>';
                                 } else {
 
                                     if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
@@ -204,19 +204,24 @@
                                         unset($_SESSION['no_agenda']);
                                     }
                                 ?>
-                            <label for="no_agenda">Nomor Agenda</label>
+                            <label for="no_agenda">Agenda Taud</label>
                         </div>
-                        <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
-                            <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" required>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix md-prefix">looks_two</i>
+                            <input id="agenda_bangkes" type="text" class="validate" name="agenda_bangkes" required>
                                 <?php
-                                    if(isset($_SESSION['kode'])){
-                                        $kode = $_SESSION['kode'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kode.'</div>';
-                                        unset($_SESSION['kode']);
+                                    if(isset($_SESSION['agenda_bangkes'])){
+                                        $agenda_bangkes = $_SESSION['agenda_bangkes'];
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$agenda_bangkes.'</div>';
+                                        unset($_SESSION['agenda_bangkes']);
+                                    }
+                                    if(isset($_SESSION['errDup'])){
+                                        $errDup = $_SESSION['errDup'];
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errDup.'</div>';
+                                        unset($_SESSION['errDup']);
                                     }
                                 ?>
-                            <label for="kode">Kode Klasifikasi</label>
+                            <label for="agenda_bangkes">Agenda Bangkes</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
@@ -257,8 +262,9 @@
                                         unset($_SESSION['errDup']);
                                     }
                                 ?>
-                            <label for="no_surat">Nomor Surat</label>
+                            <label for="no_surat">No Surat</label>
                         </div>
+                        
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">date_range</i>
                             <input id="tgl_surat" type="text" name="tgl_surat" class="datepicker" required>

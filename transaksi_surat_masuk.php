@@ -275,8 +275,8 @@
                             <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
-                                        <th width="10%">No. Agenda<br/>Kode</th>
-                                        <th width="30%">Isi Ringkas<br/> File</th>
+                                        <th width="10%">A. Taud<br/>A. Bangkes</th>
+                                        <th width="30%">Isi Ringkas<br/>File</th>
                                         <th width="24%">Asal Surat</th>
                                         <th width="18%">No. Surat<br/>Tgl Surat</th>
                                         <th width="18%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
