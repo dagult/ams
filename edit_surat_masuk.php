@@ -47,11 +47,10 @@
                                 echo '<script language="javascript">window.history.back();</script>';
                             } else {
 
-                                if(!preg_match("/^[a-zA-Z0-9., ]*$/", $nkode)){
-                                    $_SESSION['ekode'] = 'Form Kode Klasifikasi hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,)';
-                                    echo '<script language="javascript">window.history.back();</script>';
-                                } else {
-
+                                if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $no_surat)){
+                        $_SESSION['eno_surat'] = 'Form No Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
+                        echo '<script language="javascript">window.history.back();</script>';
+                    } else {
                                     if(!preg_match("/^[a-zA-Z0-9., -]*$/", $indeks)){
                                         $_SESSION['eindeks'] = 'Form Indeks hanya boleh mengandung karakter huruf, angka, spasi, titik(.) dan koma(,) dan minus (-)';
                                         echo '<script language="javascript">window.history.back();</script>';
@@ -94,7 +93,7 @@
 
                                                             move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                            $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$nkode',indeks='$indeks',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
+                                                            $query = mysqli_query($config, "UPDATE tbl_surat_masuk SET no_agenda='$no_agenda',no_surat='$no_surat',asal_surat='$asal_surat',isi='$isi',kode='$no_surat',indeks='$indeks',tgl_surat='$tgl_surat',file='$nfile',keterangan='$keterangan',id_user='$id_user' WHERE id_surat='$id_surat'");
 
                                                             if($query == true){
                                                                 $_SESSION['succEdit'] = 'SUKSES! Data berhasil diupdate';
@@ -230,7 +229,7 @@
                                         unset($_SESSION['eno_agenda']);
                                     }
                                 ?>
-                            <label for="no_agenda">Nomor Agenda</label>
+                            <label for="no_agenda">Agenda Taud</label>
                         </div>
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
                             <i class="material-icons prefix md-prefix">bookmark</i>
@@ -242,7 +241,7 @@
                                         unset($_SESSION['ekode']);
                                     }
                                 ?>
-                            <label for="kode">Kode Klasifikasi</label>
+                            <label for="kode">Agenda Bangkes</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
