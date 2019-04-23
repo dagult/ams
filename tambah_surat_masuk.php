@@ -27,9 +27,9 @@
                 $id_user = $_SESSION['id_user'];
 
                 //validasi input data
-                if(!preg_match("/^[0-9]*$/", $no_agenda)){
-                    $_SESSION['no_agenda'] = 'Form Nomor Agenda harus diisi angka!';
-                    echo '<script language="javascript">window.history.back();</script>';
+               if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $no_agenda)){
+                        $_SESSION['no_agenda'] = 'Form No Surat hanya boleh mengandung karakter huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
+                        echo '<script language="javascript">window.history.back();</script>';
                 } else {
 
                     if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $no_surat)){
@@ -196,7 +196,7 @@
                     <div class="row">
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Isi dengan angka">
                             <i class="material-icons prefix md-prefix">looks_one</i>
-                            <input id="no_agenda" type="number" class="validate" name="no_agenda" required>
+                            <input id="no_agenda" type="text" class="validate" name="no_agenda" required>
                                 <?php
                                     if(isset($_SESSION['no_agenda'])){
                                         $no_agenda = $_SESSION['no_agenda'];
@@ -204,6 +204,7 @@
                                         unset($_SESSION['no_agenda']);
                                     }
                                 ?>
+                                                           
                             <label for="no_agenda">Agenda Taud</label>
                         </div>
                         <div class="input-field col s6">

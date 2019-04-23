@@ -26,8 +26,8 @@
                 $id_user = $_SESSION['id_user'];
 
                 //validasi input data
-                if(!preg_match("/^[0-9]*$/", $no_agenda)){
-                    $_SESSION['no_agendak'] = 'Form Nomor Agenda harus diisi angka!';
+                if(!preg_match("/^[a-zA-Z0-9.\/ -]*$/", $no_agenda)){
+                    $_SESSION['no_agendak'] = 'Form Nomor Agenda hanya boleh mengandung karakter huruf, angka, spasi, titik(.), minus(-) dan garis miring(/)';
                     echo '<script language="javascript">window.history.back();</script>';
                 } else {
 

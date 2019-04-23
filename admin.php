@@ -84,7 +84,7 @@
             <div class="col s12">
                 <div class="card">
                     <div class="card-content">
-                        <h4>Selamat Datang <?php echo $_SESSION['nama']; ?></h4>
+                        <h4>Selamat Datang  <?php echo $_SESSION['nama']; ?> Bidbangkes</h4>
                         <p class="description">Anda login sebagai
                         <?php
                             if($_SESSION['admin'] == 1){
